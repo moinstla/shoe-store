@@ -10,4 +10,9 @@ describe Store do
     store = Store.create({name: "a".*(101)})
     expect(store.save).to eq(false)
   end
+  it("ensures the  name is unique") do
+    store1 = Store.create({name: "DSW"})
+    store2 = Store.create({name: "DSW"})
+    expect(store2.save).to eq(false)
+  end
 end

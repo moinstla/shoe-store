@@ -10,4 +10,9 @@ describe Brand do
     brand = Brand.create({name: "a".*(101)})
     expect(brand.save).to eq(false)
   end
+  it("ensures the  name is unique") do
+    brand1 = Brand.create({name: "Nike"})
+    brand2 = Brand.create({name: "Nike"})
+    expect(brand2.save).to eq(false)
+  end
 end
