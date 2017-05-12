@@ -56,7 +56,6 @@ delete '/stores/:id/delete' do
   redirect '/'
 end
 
-
 patch '/stores' do
   store_id = params['store-id'].to_i
   new_name = params['new-name']
@@ -80,8 +79,10 @@ end
 
 post '/brands/add' do
   brand_name = params['brand-name']
-  brand_price = params['brand_price']
-  new_brand = Brand.create({name: brand_name, price: brand_price})
+  brand_price = params['brand-price'].to_i
+  # @brand = brand_name
+  new_brand = Brand.create({name: brand_name,
+  price: brand_price})
   redirect "/brands/#{new_brand.id}"
 end
 

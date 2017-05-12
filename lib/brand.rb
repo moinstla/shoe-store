@@ -4,7 +4,7 @@ class Brand < ActiveRecord::Base
   # before_save :number_currency
   validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
   validates :price, presence: true
-  
+
 
 
   private
@@ -13,8 +13,8 @@ class Brand < ActiveRecord::Base
     end
 
     # def number_currency
-    #     number = self.price
-    #     sprintf("%.2f", number)
+
+    #     sprintf("%.2f", self)
     # end
   end
 
