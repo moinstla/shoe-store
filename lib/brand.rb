@@ -1,8 +1,10 @@
 class Brand < ActiveRecord::Base
   has_and_belongs_to_many :stores
   before_save :capitalize_name
-  # before_save :price
+  # before_save :number_currency
   validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
+  validates :price, presence: true
+  
 
 
   private
@@ -10,10 +12,12 @@ class Brand < ActiveRecord::Base
       self.name=(name.split(/(\W)/).map(&:capitalize).join)
     end
 
-  private
-    # def price
-    #   if self.price XXXXX != XXXXX
-    #     self.description+=XXXXX
-    #   end
+    # def number_currency
+    #     number = self.price
+    #     sprintf("%.2f", number)
     # end
   end
+
+  # def num_to_currency |price|
+  #   "$#{price.to_i}."+"#{(price % 1.0)}"[2..3]
+  # end

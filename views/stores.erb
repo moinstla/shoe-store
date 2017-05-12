@@ -1,0 +1,40 @@
+<h1><%= @store.name %></h1>
+
+
+<form action="/stores/<%= @store.id%>/update" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_name">Update Store Name:</label>
+  <input id="new_name" name="new_name" type="text">
+<button type="submit" class="btn btn-info">Submit</button>
+</form>
+
+<h3>Brands this store carries:</h3>
+<% if @store.brands.any? %>
+<ul>
+  <% @store.brands.each do |brand| %>
+  <li><a href="/brands/<%= brand.id %>"><%= brand.name %></a></li>
+  <% end %>
+</ul>
+<% end %>
+
+<form action="/stores/<%= @store.id%>/add_store" method="post">
+  <label for="store_id">Add Brand</label>
+  <select id="brand_id" name='brand_id' type='text'>
+    <% @brands.each do |brand| %>
+      <option value="<%= brand.id%>"> <%= brand.name %> </option>
+    <% end %>
+  </select>
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<hr>
+
+
+<form action="/stores/<%=@store.id%>/delete" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit" class="btn btn-danger">Delete Store</button>
+</form>
+
+
+<a href="/">Home</a>

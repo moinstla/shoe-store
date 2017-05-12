@@ -7,6 +7,11 @@ describe Brand do
     expect(brand.save).to eq(false)
   end
 
+  it('validates the presence of price') do
+    brand = Brand.create({price: 50})
+    expect(brand.save).to eq(false)
+  end
+
   it("ensures the length of name is at most 100 characters") do
     brand = Brand.create({name: "a".*(101)})
     expect(brand.save).to eq(false)
@@ -17,9 +22,13 @@ describe Brand do
     brand2 = Brand.create({name: "Nike"})
     expect(brand2.save).to eq(false)
   end
-  
+
   it("capitalizes every word in the name") do
     brand = Brand.create({name: "nike"})
     expect(brand.name).to eq("Nike")
   end
 end
+  # it("converts price to currency") do
+  #   brand = Brand.create({price: 50})
+  #   expect(brand.price).to eq(50.00)
+  # end

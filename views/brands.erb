@@ -1,0 +1,30 @@
+<h1><%= @brand.name %></h1>
+<h1><%= @brand.price %></h1>
+
+
+
+<h3>Stores that carry this brand:</h3>
+<% if @brand.stores.any? %>
+<ul>
+  <% @brand.stores.each do |store| %>
+  <li><a href="/stores/<%= store.id %>"><%= store.name %></a></li>
+  <% end %>
+</ul>
+<% end %>
+
+<form action="/brands/<%= @brand.id%>/add_store" method="post">
+  <label for="store_id">Add Store</label>
+  <select id="store_id" name='store_id' type='text'>
+    <% @stores.each do |store| %>
+      <option value="<%= store.id%>"> <%= store.name %> </option>
+    <% end %>
+  </select>
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<hr>
+
+
+
+
+<a href="/">Home</a>
