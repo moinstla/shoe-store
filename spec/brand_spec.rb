@@ -24,11 +24,11 @@ describe Brand do
   end
 
   it("capitalizes every word in the name") do
-    brand = Brand.create({name: "nike"})
-    expect(brand.name).to eq("Nike")
+    brand = Brand.create({name: "new balance"})
+    expect(brand.name).to eq("New Balance")
   end
 end
-  # it("converts price to currency") do
+  # it("converts price to a decimal with two places") do
   #   brand = Brand.create({price: 50})
   #   expect(brand.price).to eq(50.00)
   # end

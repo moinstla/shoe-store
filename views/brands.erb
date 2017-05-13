@@ -1,12 +1,12 @@
-<h1><%= @brand.name %></h1>
-<h1><%= @brand.price %></h1>
+<h1><%= @brand.name %> $<%= @brand.price %></h1>
+<h2></h2>
 <h3>Stores that carry this brand:</h3>
 <% if @brand.stores.any? %>
-<ul>
-  <% @brand.stores.each do |store| %>
-  <li><a href="/stores/<%= store.id %>"><%= store.name %></a></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @brand.stores.each do |store| %>
+      <li><a href="/stores/<%= store.id %>"><%= store.name %></a></li>
+    <% end %>
+  </ul>
 <% end %>
 <form action="/brands/<%= @brand.id%>/add_store" method="post">
   <label for="store_id">Add Store</label>
