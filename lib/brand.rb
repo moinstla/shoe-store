@@ -4,9 +4,9 @@ class Brand < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true, length: { maximum: 100 }
   validates :price, presence: true
 
-  def number_currency (price)
-      sprintf("%.2f", price)
-  end
+  # def number_currency (price)
+  #     sprintf("%.2f", price)
+  # end
 
   private
     def capitalize_name

@@ -28,14 +28,23 @@ describe("the updating a store's name path", {:type => :feature}) do
   end
 end
 
-describe("the adding a brand to the brand path", {:type => :feature}) do
-  it ('allows the user to add a new store') do
+describe("the adding a new brand to the store path", {:type => :feature}) do
+  it ('allows the user to add a new brand') do
     brand = Brand.create({:name => 'Nike', :price => 50, :id => nil})
     store = Store.create({:name => "Shoe Store", :id => nil})
-    visit("/brands/#{brand.id}")
-    find("#store_id").value
-    click_button('Submit')
+    visit("/stores/#{store.id}")
+    find("#brand_id").value
+    click_button('Add Brand')
     visit("/")
     expect(page).to have_content("Shoe Store")
+  end
+end
+
+describe("the deleting a store path", {:type => :feature}) do
+  it('allows a user to delete a store') do
+    store = Store.create({:name => "Shoe Store", :id => nil})
+    visit("/stores/#{store.id}")
+    click_button("Delete Store")
+    expect(page).to have_no_content("Shoe Store")
   end
 end
