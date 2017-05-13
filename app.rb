@@ -40,7 +40,7 @@ get '/stores/:id/edit' do
   erb :edit_store
 end
 
-patch '/store/:id/update' do
+patch '/stores/:id/update' do
   store_id = params['id'].to_i
   store = Store.find(store_id)
   new_name = params['new_name']
@@ -50,22 +50,6 @@ patch '/store/:id/update' do
 end
 
 delete '/stores/:id/delete' do
-  @store = Store.find(params['id'].to_i)
-  @store.delete
-  @stores = Store.all
-  redirect '/'
-end
-
-patch '/stores' do
-  store_id = params['store-id'].to_i
-  new_name = params['new-name']
-  store = Store.find(store_id)
-  @store = store.update({store_name: new_name})
-  @store = Store.find(store_id)
-  redirect "/stores/#{store_id}"
-end
-
-delete '/stores' do
   @store = Store.find(params['id'].to_i)
   @store.delete
   @stores = Store.all
@@ -98,20 +82,4 @@ post '/brands/:id/add_store' do
   @brand.stores.push(@store)
   @stores = Store.all
   redirect back
-end
-
-patch '/brands/:id/update' do
-  brand_id = params['id'].to_i
-  brand = Brand.find(brand_id)
-  new_name = params['new_name']
-  brand.update({name: new_name})
-  @brand = Brand.find(brand_id)
-  redirect back
-end
-
-delete '/brands/:id/delete' do
-  @brand = Brand.find(params['id'].to_i)
-  @brand.delete
-  @brands = Brand.all
-  redirect '/'
 end

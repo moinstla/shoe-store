@@ -1,5 +1,4 @@
 <h1><%= @store.name %></h1>
-
 <h3>Brands this store carries:</h3>
 <% if @store.brands.any? %>
 <ul><h5>
@@ -8,7 +7,6 @@
   <% end %>
 </ul></h5>
 <% end %>
-
 <form action="/stores/<%= @store.id%>/add_store" method="post">
   <label for="store_id">Add Brand</label>
   <h5><select id="brand_id" name='brand_id' type='text'>
@@ -16,24 +14,20 @@
       <option value="<%= brand.id%>"> <%= brand.name %> </option>
     <% end %>
   </select></h5>
-  <button type="submit" class="btn">Submit</button>
+  <button type="submit" class="btn btn-info">Add Brand</button>
 </form>
-
 <hr>
-
 <form action="/stores/<%= @store.id%>/update" method="post">
   <input name="_method" type="hidden" value="patch">
   <label for="new_name">Update Store Name:</label>
   <input id="new_name" name="new_name" type="text">
   <br>
-<button type="submit" class="btn btn-info">Submit</button>
+<button type="submit" class="btn btn-info">Rename</button>
 </form>
 <hr>
 <form action="/stores/<%=@store.id%>/delete" method="post">
   <input name="_method" type="hidden" value="delete">
-
   <button type="submit" class="btn btn-danger">Delete Store</button>
 </form>
-
-
-<a href="/">Home</a>
+<hr>
+<button type="button" class="btn"><a href="/">Home</a></button>
